@@ -2,10 +2,589 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Mi Portafolio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juan Daniel Alanguia Calisaya - CV</title>
+    <meta name="description" content="Currículum Vitae de Juan Daniel Alanguia Calisaya, Bachiller en Ingeniería de Sistemas.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #3b82f6;
+            --accent-hover: #60a5fa;
+            --border: #334155;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 2rem;
+            background-image: 
+                radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
+                radial-gradient(at 50% 0%, hsla(225,39%,30%,0.2) 0, transparent 50%), 
+                radial-gradient(at 100% 0%, hsla(339,49%,30%,0.1) 0, transparent 50%);
+            background-attachment: fixed;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        header h2 {
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .contact-info a {
+            color: var(--text-muted);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--accent);
+        }
+
+        .contact-info i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        /* Sections */
+        section {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 1rem;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            animation: fadeInUp 1s ease-out backwards;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.6);
+        }
+
+        /* Stagger animations */
+        section:nth-child(2) { animation-delay: 0.2s; }
+        section:nth-child(3) { animation-delay: 0.4s; }
+        section:nth-child(4) { animation-delay: 0.6s; }
+        section:nth-child(5) { animation-delay: 0.8s; }
+        section:nth-child(6) { animation-delay: 1.0s; }
+        section:nth-child(7) { animation-delay: 1.2s; }
+
+        .section-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-title i {
+            color: var(--accent);
+        }
+
+        /* Timeline Items (Experience & Education) */
+        .timeline-item {
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 1.5rem;
+            border-left: 2px solid var(--border);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .timeline-subtitle {
+            font-size: 1rem;
+            color: var(--accent);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .timeline-content ul {
+            list-style-type: none;
+            margin-top: 0.75rem;
+        }
+
+        .timeline-content li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Grid Layouts for Skills & Certs */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card, .cert-card {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover, .cert-card:hover {
+            border-color: var(--accent);
+            background: rgba(30, 41, 59, 0.8);
+            transform: translateY(-3px);
+        }
+
+        .skill-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-content {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Tags */
+        .tag-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .tag {
+            background: rgba(59, 130, 246, 0.1);
+            color: var(--accent-hover);
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-size: 0.85rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .timeline-header { flex-direction: column; gap: 0.5rem; }
+            section { padding: 1.5rem; }
+            body { padding: 1rem; }
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+        }
+    </style>
 </head>
 <body>
-    <h1>¡Hola Mundo! Bienvenido a mi sitio web.</h1>
-    <p>Pronto habrá más contenido aquí.</p>
+    <div id="particles-js"></div>
+
+    <div class="container">
+        <header>
+            <h1>Juan Daniel Alanguia Calisaya</h1>
+            <h2>Bachiller en Ingeniería de Sistemas</h2>
+            <div class="contact-info">
+                <a href="mailto:jdcalisaya@gmail.com"><i class="fas fa-envelope"></i> jdcalisaya@gmail.com</a>
+                <a href="tel:+51918015412"><i class="fas fa-phone"></i> +51 918015412</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Puno, Perú</a>
+                <a href="https://jdcali.github.io" target="_blank"><i class="fas fa-globe"></i> jdcali.github.io</a>
+                <a href="https://linkedin.com/in/jdcalisaya" target="_blank"><i class="fab fa-linkedin"></i> linkedin.com/in/jdcalisaya</a>
+            </div>
+        </header>
+
+        <section id="perfil">
+            <h2 class="section-title"><i class="fas fa-user-tie"></i> Perfil Profesional</h2>
+            <p style="color: var(--text-muted); font-size: 1.05rem; text-align: justify;">
+                Bachiller en Ingeniería de Sistemas (UPeU) y estudiante de Ingeniería Civil, con sólida formación lógica matemática y analítica. Amplia experiencia en administración de infraestructura de redes, mantenimiento de laboratorios informáticos, configuración de servidores y desarrollo de plataformas web. Profesional caracterizado por fuertes principios ético-cristianos, vocación de servicio y paciencia pedagógica, motivado a iniciar su trayectoria en la docencia de Ciencias Exactas, Computación, Matemáticas, Programación y Robótica, promoviendo el desarrollo integral de niños y jóvenes.
+            </p>
+        </section>
+
+        <section id="experiencia">
+            <h2 class="section-title"><i class="fas fa-briefcase"></i> Experiencia Profesional y Proyectos</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Operador del Centro de Cómputo</div>
+                        <div class="timeline-subtitle">Oficina Nacional de Procesos Electorales (ONPE) - ODPE Cerro Colorado</div>
+                    </div>
+                    <div class="timeline-date">03/2026 – 06/2026 | Arequipa, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Procesé, verifiqué y transmití datos críticos del sistema electoral durante las Elecciones Generales 2026 y la Segunda Elección Presidencial 2026 bajo estrictos estándares de seguridad lógica y física de la información.</li>
+                        <li>Aseguré la operatividad continua y configuración del hardware de red y los sistemas informáticos específicos de la institución en el centro de cómputo.</li>
+                        <li>Ejecuté protocolos técnicos de respuesta rápida ante fallas críticas de conectividad, garantizando un uptime del 100% durante el procesamiento oficial de actas electorales.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Asistente Técnico de Proyectos y Modelado BIM</div>
+                        <div class="timeline-subtitle">Grupo Cimic S.A.C.</div>
+                    </div>
+                    <div class="timeline-date">05/2023 – 11/2025 | Puno, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Programé scripts en Python para el procesamiento, ordenamiento y automatización de grandes volúmenes de datos técnicos.</li>
+                        <li>Apoyé en la organización, estructuración técnica y control documental de proyectos complejos de consultoría utilizando modelado BIM (Revit, Navisworks).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Técnico de Soporte TI, Redes e Infraestructura</div>
+                        <div class="timeline-subtitle">Grupo Cimic S.A.C.</div>
+                    </div>
+                    <div class="timeline-date">05/2021 – 10/2024 | Puno, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Planifiqué y ejecuté programas de mantenimiento preventivo y correctivo de hardware de alto rendimiento, asegurando el 100% de operatividad informática.</li>
+                        <li>Configuré servidores locales en entornos Windows Server y Linux, y administré redes locales LAN/WLAN.</li>
+                        <li>Brindé capacitación técnica y pedagógica a usuarios y personal de la empresa en el uso eficiente de herramientas de ofimática y plataformas de colaboración (Google Workspace, Teams).</li>
+                        <li>Gestioné la asignación de permisos, licencias de software y el inventario técnico de hardware.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Especialista en Fotogrametría y Operario de Tecnología RPAS (Dron)</div>
+                        <div class="timeline-subtitle">Grupo Cimic S.A.C.</div>
+                    </div>
+                    <div class="timeline-date">02/2021 – 11/2023 | Puno, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Planifiqué vuelos y procesé datos geoespaciales capturados con drones para la generación de modelos vectoriales 3D detallados.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Practicante Pre-Profesional de Ingeniería de Sistemas</div>
+                        <div class="timeline-subtitle">Grupo Cimic S.A.C.</div>
+                    </div>
+                    <div class="timeline-date">03/2021 – 12/2021 | Puno, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Diseñé, programé e implementé la Intranet Corporativa institucional utilizando PHP y MySQL.</li>
+                    </ul>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="educacion">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Formación Académica</h2>
+            
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Bachiller en Ingeniería de Sistemas</div>
+                        <div class="timeline-subtitle">Universidad Peruana Unión (UPeU)</div>
+                    </div>
+                    <div class="timeline-date">12/2025 | Juliaca, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Formación profesional bajo la cosmovisión y el modelo educativo de la educación redentora adventista.</li>
+                        <li>Especialización en algoritmia, lógica de programación, bases de datos, administración de redes y desarrollo de software.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Estudios de Ingeniería Civil (En Curso)</div>
+                        <div class="timeline-subtitle">Universidad Continental</div>
+                    </div>
+                    <div class="timeline-date">Arequipa, Perú</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Formación complementaria en ciencias físicas y matemáticas superiores aplicadas (Cálculo, Álgebra Lineal, Geometría Analítica y Estadística).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-header">
+                    <div>
+                        <div class="timeline-title">Certificado en Estudios Teológicos</div>
+                        <div class="timeline-subtitle">Seminario Reformado Latinoamericano</div>
+                    </div>
+                    <div class="timeline-date">11/2020 | Medellín, Colombia</div>
+                </div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Estudios enfocados en principios éticos-cristianos, liderazgo social y juvenil, dinámicas de consejería familiar y resolución pacífica de conflictos.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="habilidades">
+            <h2 class="section-title"><i class="fas fa-laptop-code"></i> Habilidades Técnicas y Competencias Docentes</h2>
+            <div class="grid-2">
+                <div class="skill-card">
+                    <div class="skill-title"><i class="fas fa-chalkboard-teacher"></i> Docencia y Académica</div>
+                    <div class="skill-content">Enseñanza de matemáticas, lenguajes de programación modernos, pensamiento computacional, algoritmos, desarrollo web, robótica escolar y matemáticas avanzadas (secundaria y preuniversitaria).</div>
+                    <div class="tag-container">
+                        <span class="tag">Python</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Kotlin</span>
+                        <span class="tag">Rust</span>
+                        <span class="tag">Go</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title"><i class="fas fa-network-wired"></i> Mantenimiento y Soporte Escolar</div>
+                    <div class="skill-content">Diagnóstico físico de hardware, reparación avanzada de computadoras, administración de redes locales, gestión de servidores, filtrado de contenido web institucional.</div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title"><i class="fas fa-chalkboard"></i> Tecnologías de la Educación (TIC)</div>
+                    <div class="skill-content">Administración y dominio de plataformas LMS, Microsoft Teams para educación, pizarras interactivas digitales.</div>
+                    <div class="tag-container">
+                        <span class="tag">Google Classroom</span>
+                        <span class="tag">Canvas</span>
+                        <span class="tag">Moodle</span>
+                        <span class="tag">MS Teams</span>
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-title"><i class="fas fa-hands-helping"></i> Valores e Integridad</div>
+                    <div class="skill-content">Identificación total con el modelo de Educación Cristiano. Paciencia pedagógica, liderazgo moral y formativo.</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certificaciones">
+            <h2 class="section-title"><i class="fas fa-certificate"></i> Certificaciones y Capacitaciones Destacadas</h2>
+            <div class="grid-2">
+                <div class="cert-card">
+                    <div class="timeline-title">Especialización de Modelamiento BIM en Edificaciones</div>
+                    <div class="skill-content">Escuela de Posgrado de la UPeU & iBIM Chile (2023) - 160 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Autodesk ATC: Navisworks, Revit, Infraworks e IFC/Gestión BIM</div>
+                    <div class="skill-content">I-BIM Chile Authorized Training Center (2024)</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Lenguajes de Programación Modernos (Python, SQL, JS, Kotlin, Rust, Go)</div>
+                    <div class="skill-content">INGEDUCA E.I.R.L. (2025) - 200 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Diplomado en Python + Dynamo para Automatizar Estructuras en Revit</div>
+                    <div class="skill-content">CERSA / Colegio de Ingenieros del Perú (2022) - 320 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Diplomado en Modelamiento de Puentes con Revit Structure</div>
+                    <div class="skill-content">CERSA / Colegio de Ingenieros del Perú (2022) - 260 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Sistemas de Información Geográfica Avanzados: ArcGIS y QGIS</div>
+                    <div class="skill-content">INGEDUCA E.I.R.L. / Colegio de Ingenieros del Perú (2025) - 360 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Sistemas Administrativos en la Gestión Pública (SIGA-SIAF-SEACE)</div>
+                    <div class="skill-content">MINPE Chiclayo (2025) - 384 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Ofimática Profesional Avanzada y Power BI</div>
+                    <div class="skill-content">INGEDUCA E.I.R.L. (2025) - 280 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Diseño Sismorresistente en Edificaciones con Etabs, Sap 2000 y Safe</div>
+                    <div class="skill-content">CERSA (2022) - 300 hrs</div>
+                </div>
+                <div class="cert-card">
+                    <div class="timeline-title">Operador/Piloto de RPAS (Drones)</div>
+                    <div class="skill-content">Pilot Shop Perú / Autorizado DGAC RAP 91 (2021)</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="adicional">
+            <h2 class="section-title"><i class="fas fa-plus-circle"></i> Adicional</h2>
+            <div class="timeline-item">
+                <div class="timeline-title">Licencia de conducir Clase A1</div>
+                <div class="timeline-content">
+                    <ul>
+                        <li>Experiencia en la conducción de unidades 4x4.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Particles.js Library -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 60, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 3, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#3b82f6",
+                    "opacity": 0.3,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1.5,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": { "enable": true, "mode": "grab" },
+                    "onclick": { "enable": true, "mode": "push" },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": { "distance": 140, "line_linked": { "opacity": 0.8 } },
+                    "push": { "particles_nb": 3 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
 </body>
 </html>
